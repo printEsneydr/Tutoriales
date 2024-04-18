@@ -1,0 +1,7 @@
+com\umariana\conexion\Tutorial.class
+Clases\conexion.class
+com\umariana\conexion\gestionarTutoriales.class
+com\umariana\conexion\JakartaRestConfiguration.class
+servlets\svAgregarTutorial.class
+com\umariana\conexion\resources\JakartaEE8Resource.class
+com\umariana\conexion\listarTuto.class
