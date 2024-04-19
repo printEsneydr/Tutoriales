@@ -14,15 +14,15 @@ public class Tutorial {
     private String nombre;
     private String url;
     private String estado;
-    private String categoria;
+    private String categori;
     private String prioridad;
 
-    public Tutorial(String idTutorial, String nombre, String url, String estado, String categoria, String prioridad) {
+    public Tutorial(String idTutorial, String nombre, String url, String estado, String categori, String prioridad) {
         this.idTutorial = idTutorial;
         this.nombre = nombre;
         this.url = url;
         this.estado = estado;
-        this.categoria = categoria;
+        this.categori = categori;
         this.prioridad = prioridad;
     }
 
@@ -58,12 +58,12 @@ public class Tutorial {
         this.estado = estado;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getCategori() {
+        return categori;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategori(String categori) {
+        this.categori = categori;
     }
 
     public String getPrioridad() {

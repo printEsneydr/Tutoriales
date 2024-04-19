@@ -31,9 +31,9 @@ public class listarTuto {
 
             String url = resultSet.getString("Url");
             String estado = resultSet.getString("Estado");
-            String categoria = resultSet.getString("Categori");
+            String categori = resultSet.getString("Categori");
             
-            Tutorial tutorial = new Tutorial(idTutorial, nombre, url, estado, categoria, prioridad);
+            Tutorial tutorial = new Tutorial(idTutorial, nombre, url, estado, categori, prioridad);
             tutoriales.add(tutorial);
         }
     } catch (SQLException e) {

@@ -52,15 +52,15 @@ public class svAgregarTutorial extends HttpServlet {
                 int prioridad=Integer.parseInt(p);               
                 String url = request.getParameter("url");
                 String estado = request.getParameter("estado");           
-                String cat=request.getParameter("categoria");
-                int categoria = Integer.parseInt(cat);
+                String cat=request.getParameter("categori");
+                int categori = Integer.parseInt(cat);
                 
                 stmt.setString(1, idTutorial);
                 stmt.setString(2, nombre);                
                 stmt.setInt(3, prioridad);
                 stmt.setString(4, url);
                 stmt.setString(5, estado);
-                stmt.setInt(6, categoria);                                
+                stmt.setInt(6, categori);                                
 
                 stmt.execute();
                 conn.close();

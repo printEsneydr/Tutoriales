@@ -126,20 +126,23 @@
                 <td><%= miTutorial.getPrioridad() %></td>
                 <td><%= miTutorial.getUrl() %></td>
                 <td><%= miTutorial.getEstado() %></td> 
-                <td><%= miTutorial.getCategoria() %></td>                                 
+                <td><%= miTutorial.getCategori() %></td>                                 
                                                                     
+                        <!-- En la sección de la tabla en index.jsp -->
                         <td>
-
-                            <!-- Actualiza el botón de edición en la tabla de perritos, para editar su informacion -->                                        
-                            <a href="#editModal" class="btn btn-warning btn-sm" title="Editar"
-                               onclick="">
+                            <!-- Botón para editar tutorial -->
+                            <button class="btn btn-warning btn-sm" onclick="editarTutorial(<%= miTutorial.getIdTutorial() %>)">
                                 <i class="fa fa-pencil-alt text-white"></i>
-                            </a>                      
-                            <!-- boton para eliminar el perrito modificado para usar jax -->
-                            <button class="btn btn-danger btn-sm" onclick="">
-                                <i class="fa fa-trash text-white"></i>
-                            </button>                                               
+                            </button>
+                            <!-- Botón para eliminar tutorial -->
+                            <form action="svEliminarTutorial" method="post" style="display: inline;">
+                                <input type="hidden" name="idTutorial" value="<%= miTutorial.getIdTutorial() %>">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este tutorial?');">
+                                    <i class="fa fa-trash text-white"></i>
+                                </button>
+                            </form>
                         </td>
+
                     </tr>
                     <!-- cierre de el ciclo-->
                     <%
@@ -160,6 +163,88 @@
 
         </div>
     </div>          
-</div>                                                                                     
+</div>
+
+
+<!-- Modal de edición de tutorial -->
+<div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="svEditarTutorial" method="POST" id="formEditarTutorial">
+                    <!-- Campo oculto para almacenar el ID del tutorial -->
+                    <input type="hidden" name="idTutorialEdit" id="idTutorialEdit">
+                    <!-- Campo de edición para el nombre -->
+                    <div class="mb-3">
+                        <label for="nombreEdit" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreEdit" name="nombre" placeholder="Nombre del tutorial">
+                    </div>
+                    <!-- Campo de edición para la prioridad -->
+                    <div class="mb-3">
+                        <label for="prioridadEdit" class="form-label">Prioridad</label>
+                        <select class="form-select" id="prioridadEdit" name="prioridad" placeholder="Prioridad del tutorial">
+                        <option value="" disabled selected>Seleccione...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>                                 
+                            <option value="3">3</option>                                  
+                            <option value="4">4</option>                                   
+                            <option value="5">5</option>                                                                    
+                            <option value="6">6</option>                                  
+                            <option value="7">7</option>                                  
+                            <option value="8">8</option>                                  
+                            <option value="9">9</option>                                  
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <!-- Campo de edición para la URL -->
+                    <div class="mb-3">
+                        <label for="urlEdit" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="urlEdit" name="url" placeholder="URL del tutorial">
+                    </div>
+                    <!-- Campo de edición para el estado -->
+                    <div class="mb-3">
+                        <label for="estadoEdit" class="form-label">Estado</label>
+                        <select class="form-select" id="estadoEdit" name="estado">
+                            <option value="Revisado">Revisado</option>
+                            <option value="Por revisar">Por revisar</option>
+                        </select>
+                    </div>
+                    <!-- Campo de edición para la categoría -->
+                    <div class="mb-3">
+                        <label for="categoriaEdit" class="form-label">Categoría</label>
+                        <select class="form-select" id="categoriaEdit" name="categori">
+                            <option value="Logica de programacion">Lógica de programación</option>
+                            <option value="Flutter">Flutter</option>
+                            <option value="node.js">Node.js</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <!-- Botón para enviar el formulario de edición -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Script para manejar la apertura del modal y enviar el ID del tutorial -->
+<script>
+    function editarTutorial(idTutorial) {
+        // Establecer el valor del ID del tutorial en el campo oculto del formulario de edición
+        document.getElementById("idTutorialEdit").value = idTutorial;
+        // Mostrar el modal de edición
+        var editarTutorialModal = new bootstrap.Modal(document.getElementById('editarTutorialModal'), {
+            keyboard: false
+        });
+        editarTutorialModal.show();
+    }
+</script>
 <!-- include para incluir un archivo dentro de otro, en este caso el footer qque tomara los scripts realizados en esa clase.  -->
 <%@include file= "templates/footer.jsp"%>
