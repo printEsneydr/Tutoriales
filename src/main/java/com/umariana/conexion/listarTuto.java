@@ -42,6 +42,5 @@ public class listarTuto {
     }
     
     return tutoriales;
-}
-
+}  
 }

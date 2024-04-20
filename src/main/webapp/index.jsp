@@ -10,6 +10,19 @@
         <img src="img/tutorialimg.jpg" style="width: 70%; height: auto;" class="d-inline-block align-top" alt="banner">    
     </a>
 </nav>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" text="center">
+    <div class="container-fluid" style="font-family: 'Archivo Black';" > 
+        <a class="navbar-brand" href="indexCat.jsp">Agregar categorias</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#indexCat.jsp" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+
+
 <!-- clase contenedora -->    
 <!-- Clase container-fluid para que el contenedor se extienda a toda la pantalla -->
 <div style="font-family: 'Archivo Black';" class="container-fluid">
@@ -107,35 +120,39 @@
                 <tbody>                             
                     <!-- se toma el array creado en el POST para los datos de los perritos-->
                     <%
-    // Obtener la lista de tutoriales llamando al método estático listarTuto()
-    List<Tutorial> listaTutoriales = listarTuto.listarTuto();
+                        // Obtener la lista de tutoriales llamando al método estático listarTuto()
+                        List<Tutorial> listaTutoriales = listarTuto.listarTuto();
 
-    // Verificar si la lista no está vacía
-    if (listaTutoriales != null && !listaTutoriales.isEmpty()) {
-        // Iterar sobre la lista de tutoriales para mostrar cada uno en la tabla
-        for (Tutorial miTutorial : listaTutoriales) {
-%>
+                        // Verificar si la lista no está vacía
+                        if (listaTutoriales != null && !listaTutoriales.isEmpty()) {
+                            // Iterar sobre la lista de tutoriales para mostrar cada uno en la tabla
+                            for (Tutorial miTutorial : listaTutoriales) {
+                    %>
 
 
 
                     <tr id="tr" class="text-center">                                   
                         <!-- las extensiones para la sub tabla con los datos registrados en el form -->                                                                                             
-                        <td><%= miTutorial.getIdTutorial() %></td>                                 
-                <td><%= miTutorial.getNombre() %></td>                                 
-                <td><%= miTutorial.getPrioridad() %></td>
-                <td><%= miTutorial.getUrl() %></td>
-                <td><%= miTutorial.getEstado() %></td> 
-                <td><%= miTutorial.getCategori() %></td>                                 
-                                                                    
+                        <td><%= miTutorial.getIdTutorial()%></td>                                 
+                        <td><%= miTutorial.getNombre()%></td>                                 
+                        <td><%= miTutorial.getPrioridad()%></td>
+                        <td><a href="<%= miTutorial.getUrl() %>" target="_blank">Abrir URL</a></td>
+                        <td><%= miTutorial.getEstado()%></td> 
+                        <td><%= miTutorial.getCategori()%></td>                                 
+
                         <!-- En la sección de la tabla en index.jsp -->
                         <td>
+
+                            <a href="#" class="btn btn-primary btn-sm" onclick="mostrarTutorial('<%= miTutorial.getIdTutorial()%>', '<%= miTutorial.getNombre()%>', '<%= miTutorial.getPrioridad()%>', '<%= miTutorial.getUrl()%>', '<%= miTutorial.getEstado()%>', '<%= miTutorial.getCategori()%>')">
+                                <i class="fa fa-eye text-white"></i>
+                            </a>
                             <!-- Botón para editar tutorial -->
-                            <button class="btn btn-warning btn-sm" onclick="editarTutorial(<%= miTutorial.getIdTutorial() %>)">
+                            <button class="btn btn-warning btn-sm" onclick="editarTutorial(<%= miTutorial.getIdTutorial()%>)">
                                 <i class="fa fa-pencil-alt text-white"></i>
                             </button>
                             <!-- Botón para eliminar tutorial -->
                             <form action="svEliminarTutorial" method="post" style="display: inline;">
-                                <input type="hidden" name="idTutorial" value="<%= miTutorial.getIdTutorial() %>">
+                                <input type="hidden" name="idTutorial" value="<%= miTutorial.getIdTutorial()%>">
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este tutorial?');">
                                     <i class="fa fa-trash text-white"></i>
                                 </button>
@@ -145,20 +162,20 @@
                     </tr>
                     <!-- cierre de el ciclo-->
                     <%
-        }
-    } else {
-%>
+                        }
+                    } else {
+                    %>
 
                 </tbody>
             </table>  
 
-        <!-- Mensaje si no se encontraron tutoriales -->
-        <tr>
-            <td colspan="7" class="no-tutorials">No se encontraron tutoriales.</td>
-        </tr>
-<%
-    }
-%>            
+            <!-- Mensaje si no se encontraron tutoriales -->
+            <tr>
+                <td colspan="7" class="no-tutorials">No se encontraron tutoriales.</td>
+            </tr>
+            <%
+                }
+            %>            
 
         </div>
     </div>          
@@ -166,7 +183,7 @@
 
 
 <!-- Modal de edición de tutorial -->
-<div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">>
+<div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -186,7 +203,7 @@
                     <div class="mb-3">
                         <label for="prioridadEdit" class="form-label">Prioridad</label>
                         <select class="form-select" id="prioridadEdit" name="prioridad" placeholder="Prioridad del tutorial" required>
-                        <option value="" disabled selected>Seleccione...</option>
+                            <option value="" disabled selected>Seleccione...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>                                 
                             <option value="3">3</option>                                  
@@ -246,5 +263,72 @@
         editarTutorialModal.show();
     }
 </script>
+<!-- Modal para mostrar la informacion del tutorial-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles del Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <h4 style='color: #1c1c1c; text-align: center;'>
+                    <p><strong>ID<br></strong> <span style='color: #555555' id="tutorialId"></span></p>
+                    <p><strong>Nombre<br></strong> <span style='color: #555555' id="tutorialNombre"></span></p>
+                    <p><strong>Prioridad<br></strong> <span style='color: #555555' id="tutorialPrioridad"></span></p>
+                    <p><strong>URL<br></strong> <span style='color: #555555' id="tutorialUrl"></span></p>
+                    <p><strong>Estado<br></strong> <span style='color: #555555' id="tutorialEstado"></span></p>
+                    <p><strong>Categoría<br></strong> <span style='color: #555555' id="tutorialCategoria"></span></p>
+                </h4>
+                <div class="text-center">
+                    <button type="button" class="btn btn-danger btn-success mx-2" data-bs-dismiss="modal">Cancelar</button>
+                </div>       </div>   
+        </div>
+    </div>
+</div>
+
+<script>
+    function mostrarTutorial(id, nombre, prioridad, url, estado, categoria) {
+        // Actualiza el contenido de la ventana modal con los datos del tutorial
+        document.getElementById('tutorialId').innerText = id;
+        document.getElementById('tutorialNombre').innerText = nombre;
+        document.getElementById('tutorialPrioridad').innerText = prioridad;
+        document.getElementById('tutorialUrl').innerText = url;
+        document.getElementById('tutorialEstado').innerText = estado;
+        document.getElementById('tutorialCategoria').innerText = categoria;
+
+        // Muestra la ventana modal
+        var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        modal.show();
+    }
+</script>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display: none;">
+  <strong>El ID del tutorial ya existe, ingresa un ID diferente.</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<%
+    Boolean userActionError = (Boolean) session.getAttribute("userActionError");
+    // Verificar si el error proviene de una acción del usuario
+    if (userActionError != null && userActionError) {
+%>
+<script>
+    // Mostrar la alerta de error en la ventana modal
+    var errorAlert = document.getElementById('errorAlert');
+    errorAlert.style.display = 'block';
+</script>
+<%
+    // Limpiar la bandera después de mostrar la alerta
+    session.removeAttribute("userActionError");
+}
+%>
+<script>
+        // Ocultar la alerta después de 4 segundos 
+        setTimeout(function () {
+            $('#errorAlert').alert('close');
+        }, 4000);
+    </script>
+
 <!-- include para incluir un archivo dentro de otro, en este caso el footer qque tomara los scripts realizados en esa clase.  -->
 <%@include file= "templates/footer.jsp"%>

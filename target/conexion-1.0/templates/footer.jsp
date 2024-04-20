@@ -12,7 +12,7 @@
         // Realiza una solicitud AJAX al servlet para obtener los detalles del perro por su nombre
         $.ajax({
             // Cambia 'id' por el nombre del parámetro que esperas en tu servlet
-            url: 'svCaninos?nombre=' + nombre, 
+            url: 'svAgregarTutorial?nombre=' + nombre, 
             method: 'GET',
             success: function (data) {
         // Actualiza el contenido del modal con los detalles del perro                    

@@ -23,7 +23,7 @@
             @import url('https://fonts.googleapis.com/css2?family=Alice&family=Architects+Daughter&family=Bungee&family=Chakra+Petch:wght@300&family=Kaushan+Script&family=Khand:wght@500&family=Oswald:wght@200;400;700&family=Permanent+Marker&family=Sedgwick+Ave+Display&family=Ultra&display=swap');
         </style>
     </head>
-    <body>
+    <body>        
         <!--creacion de modal para mostrar ventana emergente si el nombre llegase a ser repetido-->
         <div id="nombreDuplicadoModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog">
@@ -44,27 +44,7 @@
 
 
 
-        <!-- creacion de la ventana modal que muestra la informacion del perrito al presionar el icono del ojito -->
-        <div style="font-family: 'Archivo Black';" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" id="tablaResultados">
-            <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel">Detalles del Perrito</h4>
-                        <button type="button" class="btn-close btn-close-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="perro-details" class="text-center">
-                        <!-- Detalles del perro -->
-                        </div>
-                    </div>
-                    <!-- cambio al estilo del boton cerrar -->
-                    <div class="modal-footer d-flex justify-content-center">
-                        <!-- aqui se agrega en este boton, data-bs... para que la ventana se cierre con ese unico boton -->
-                        <button type="button" class="btn btn-danger btn-success" data-bs-dismiss="modal" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <!--agregamos modal para la edicion de la informacion del perrito al presionar el icono del lapicito-->
         <div style="text-align: center" style="font-family: 'Archivo Black';" class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
