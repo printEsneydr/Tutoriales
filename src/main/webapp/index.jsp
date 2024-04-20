@@ -60,24 +60,23 @@
                         <label class="input-group-text" for="estado">Estado</label>
                         <select class="form-select" name="estado" aria-label="Default select example" id="estado" required>
                             <option value="" disabled selected>Seleccione...</option>
-                            <option value="1">Revisado</option>
-                            <option value="2">Por revisado</option>                                 
+                            <option value="Revisado">Revisado</option>
+                            <option value="Por revisar">Por revisar</option>                                 
                         </select>                            
                     </div>          
                     <!--Label e inputnput para los puntos-->                   
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="categoria">Categoria</label>
-                        <select class="form-select" name="categoria" aria-label="Default select example" id="categoria" required>
+                        <select class="form-select" name="categori" aria-label="Default select example" id="categori" required>
                             <option value="" disabled selected>Seleccione...</option>
-                            <option value="1">Logica de programacion</option>
-                            <option value="2">Flutter</option>                                 
-                            <option value="3">node.js</option>    
+                            <option value="Logica de programacion">Logica de programacion</option>
+                            <option value="Flutter">Flutter</option>                                 
+                            <option value="node.js">node.js</option>    
                         </select>                            
                     </div>                             
                     <!-- boton de agregar el tutorial -->                             
                     <div class="text-center">                            
                         <button type="submit" class="btn btn-success mx-auto">Agregar tutorial</button>    
-                        <input type="submit" class="btn btn-primary" value="Agregar tutorial" >                     
                     </div>                           
                 </form>                                        
             </div>                         
@@ -167,7 +166,7 @@
 
 
 <!-- Modal de edición de tutorial -->
-<div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,12 +180,12 @@
                     <!-- Campo de edición para el nombre -->
                     <div class="mb-3">
                         <label for="nombreEdit" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreEdit" name="nombre" placeholder="Nombre del tutorial">
+                        <input type="text" class="form-control" id="nombreEdit" name="nombre" placeholder="Nombre del tutorial" required>
                     </div>
                     <!-- Campo de edición para la prioridad -->
                     <div class="mb-3">
                         <label for="prioridadEdit" class="form-label">Prioridad</label>
-                        <select class="form-select" id="prioridadEdit" name="prioridad" placeholder="Prioridad del tutorial">
+                        <select class="form-select" id="prioridadEdit" name="prioridad" placeholder="Prioridad del tutorial" required>
                         <option value="" disabled selected>Seleccione...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>                                 
@@ -203,12 +202,12 @@
                     <!-- Campo de edición para la URL -->
                     <div class="mb-3">
                         <label for="urlEdit" class="form-label">URL</label>
-                        <input type="text" class="form-control" id="urlEdit" name="url" placeholder="URL del tutorial">
+                        <input type="text" class="form-control" id="urlEdit" name="url" placeholder="URL del tutorial" required>
                     </div>
                     <!-- Campo de edición para el estado -->
                     <div class="mb-3">
                         <label for="estadoEdit" class="form-label">Estado</label>
-                        <select class="form-select" id="estadoEdit" name="estado">
+                        <select class="form-select" id="estadoEdit" name="estado" required>
                             <option value="Revisado">Revisado</option>
                             <option value="Por revisar">Por revisar</option>
                         </select>
@@ -216,7 +215,7 @@
                     <!-- Campo de edición para la categoría -->
                     <div class="mb-3">
                         <label for="categoriaEdit" class="form-label">Categoría</label>
-                        <select class="form-select" id="categoriaEdit" name="categori">
+                        <select class="form-select" id="categoriaEdit" name="categoria" required>
                             <option value="Logica de programacion">Lógica de programación</option>
                             <option value="Flutter">Flutter</option>
                             <option value="node.js">Node.js</option>
@@ -226,6 +225,7 @@
                     <!-- Botón para enviar el formulario de edición -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-danger btn-success mx-2" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>

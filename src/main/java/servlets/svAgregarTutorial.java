@@ -48,19 +48,24 @@ public class svAgregarTutorial extends HttpServlet {
                 CallableStatement stmt = conn.prepareCall("{call agregarTutorial(?, ?, ?, ?, ?, ?)}");
                 String idTutorial = request.getParameter("idTutorial");
                 String nombre = request.getParameter("nombre");               
-                String p = request.getParameter("prioridad");
-                int prioridad=Integer.parseInt(p);               
+                String prioridad = request.getParameter("prioridad");
                 String url = request.getParameter("url");
                 String estado = request.getParameter("estado");           
                 String cat=request.getParameter("categori");
-                int categori = Integer.parseInt(cat);
                 
                 stmt.setString(1, idTutorial);
                 stmt.setString(2, nombre);                
-                stmt.setInt(3, prioridad);
+                stmt.setString(3, prioridad);
                 stmt.setString(4, url);
                 stmt.setString(5, estado);
-                stmt.setInt(6, categori);                                
+                stmt.setString(6, cat);   
+                
+                System.out.println(idTutorial);
+                System.out.println(nombre);
+                System.out.println(prioridad);
+                System.out.println(url);
+                System.out.println(estado);
+                System.out.println(cat);
 
                 stmt.execute();
                 conn.close();

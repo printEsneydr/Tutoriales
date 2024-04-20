@@ -39,7 +39,7 @@ public class svEditarTutorial extends HttpServlet {
                 String nombre = request.getParameter("nombre");
                 String url = request.getParameter("url");
                 String estado = request.getParameter("estado");
-                String categori = request.getParameter("categoria");
+                String categoria = request.getParameter("categoria");
 
                 // Validar y convertir la prioridad a entero
                 String p = request.getParameter("prioridad");
@@ -56,7 +56,7 @@ public class svEditarTutorial extends HttpServlet {
                 pstmt.setInt(2, prioridad);
                 pstmt.setString(3, url);
                 pstmt.setString(4, estado);
-                pstmt.setString(5, categori);
+                pstmt.setString(5, categoria);
                 pstmt.setString(6, idTutorial);
 
                 // Ejecutar la consulta de actualización
