@@ -21,9 +21,51 @@
         <!-- agregando las fuentes desde google fonts-->   
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Alice&family=Architects+Daughter&family=Bungee&family=Chakra+Petch:wght@300&family=Kaushan+Script&family=Khand:wght@500&family=Oswald:wght@200;400;700&family=Permanent+Marker&family=Sedgwick+Ave+Display&family=Ultra&display=swap');
+        
+        
         </style>
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+        /* Estilos personalizados */
+        .navbar {
+            background-color: #000; /* Fondo negro */
+            font-family: 'Arial', sans-serif; /* Fuente */
+        }
+        .navbar-toggler {
+            border-color: #fff; /* Color del botón de alternancia */
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important; /* Color del texto */
+            margin-right: 20px; /* Espaciado entre elementos */
+            transition: color 0.3s ease; /* Transición de color al pasar el ratón */
+        }
+        .navbar-nav .nav-link:hover {
+            color: #aaa !important; /* Color del texto al pasar el ratón */
+        }
+        
+        .navbar-brand {
+        font-style: italic;
+        
+        .navbar * {
+        font-style: italic;
+    }
+    }
+    </style>
     </head>
-    <body>        
+    
+    
+    <body>     
+        <!-- Bootstrap JS (opcional, si necesitas funcionalidad como el botón de hamburguesa) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
         <!--creacion de modal para mostrar ventana emergente si el nombre llegase a ser repetido-->
         <div id="nombreDuplicadoModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog">

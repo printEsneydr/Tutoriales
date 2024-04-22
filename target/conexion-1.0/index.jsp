@@ -1,9 +1,31 @@
+<%@page import="com.umariana.conexion.listarCat"%>
+<%@page import="com.umariana.conexion.Categoria"%>
 <%@page import="com.umariana.conexion.listarTuto"%>
 <%@page import="com.umariana.conexion.gestionarTutoriales"%>
 <%@page import="java.util.List"%>
 <%@page import="com.umariana.conexion.Tutorial"%>
 <!-- include para incluir un archivo dentro de otro, en este caso el header.  -->
 <%@include file="templates/header.jsp"%>
+
+
+
+<nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <label class="navbar-brand" style="color: #ffffff; font-size: 40px " >Tutoriales</label>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" style="font-family: cursive" aria-current="page" href="index.jsp">Agregar tutoriales</a>
+                    <a class="nav-link active" style="font-family: cursive" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
 <!-- Agregar banner para interfaz principal -->
 <nav class="navbar navbar-light bg-light">
     <a class="img-fluid mx-auto navbar-brand">
@@ -12,14 +34,7 @@
 </nav>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" text="center">
-    <div class="container-fluid" style="font-family: 'Archivo Black';" > 
-        <a class="navbar-brand" href="indexCat.jsp">Agregar categorias</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#indexCat.jsp" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
+
 
 
 
@@ -80,12 +95,17 @@
                     <!--Label e inputnput para los puntos-->                   
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="categoria">Categoria</label>
-                        <select class="form-select" name="categori" aria-label="Default select example" id="categori" required>
-                            <option value="" disabled selected>Seleccione...</option>
-                            <option value="Logica de programacion">Logica de programacion</option>
-                            <option value="Flutter">Flutter</option>                                 
-                            <option value="node.js">node.js</option>    
-                        </select>                            
+                        <select name="categoria">
+                            <% 
+                            List<Categoria> categorias = listarCat.listarCat();
+                            for (Categoria categoria : categorias) {
+                            %>
+                            <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat() %></option>
+                            <% 
+                            }
+                            %>
+                        </select>
+                           
                     </div>                             
                     <!-- boton de agregar el tutorial -->                             
                     <div class="text-center">                            
@@ -304,7 +324,7 @@
     }
 </script>
 
-<div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display: none;">
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlerta" style="display: none;">
   <strong>El ID del tutorial ya existe, ingresa un ID diferente.</strong> 
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
@@ -315,8 +335,8 @@
 %>
 <script>
     // Mostrar la alerta de error en la ventana modal
-    var errorAlert = document.getElementById('errorAlert');
-    errorAlert.style.display = 'block';
+    var errorAlerta = document.getElementById('errorAlerta');
+    errorAlerta.style.display = 'block';
 </script>
 <%
     // Limpiar la bandera después de mostrar la alerta
@@ -326,9 +346,9 @@
 <script>
         // Ocultar la alerta después de 4 segundos 
         setTimeout(function () {
-            $('#errorAlert').alert('close');
+            $('#errorAlerta').alert('close');
         }, 4000);
-    </script>
+</script>
 
 <!-- include para incluir un archivo dentro de otro, en este caso el footer qque tomara los scripts realizados en esa clase.  -->
 <%@include file= "templates/footer.jsp"%>

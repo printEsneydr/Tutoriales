@@ -4,6 +4,23 @@
 <%@page import="java.util.List"%>
 <!-- include para incluir un archivo dentro de otro, en este caso el header.  -->
 <%@include file="templates/header.jsp"%>
+
+
+<nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <label class="navbar-brand" style="color: #ffffff; font-size: 40px " >Tutoriales</label>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" style="font-family: cursive" aria-current="page" href="index.jsp">Agregar tutoriales</a>
+                    <a class="nav-link active" style="font-family: cursive" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
 <!-- Agregar banner para interfaz principal -->
 <nav class="navbar navbar-light bg-light">
     <a class="img-fluid mx-auto navbar-brand">
@@ -11,14 +28,7 @@
     </a>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" text="center">
-  <div class="container-fluid" style="font-family: 'Archivo Black';" > 
-    <a class="navbar-brand" href="index.jsp">Regresar a tutoriales</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#indexCat.jsp" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
+
 <!-- clase contenedora -->    
 <!-- Clase container-fluid para que el contenedor se extienda a toda la pantalla -->
 <div style="font-family: 'Archivo Black';" class="container-fluid">

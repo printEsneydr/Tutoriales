@@ -47,73 +47,52 @@ public class svAgregarTutorial extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       Connection conn = gestionar.establecerConexion();
-  
-        if (conn != null) {
-            try {
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    Connection conn = gestionar.establecerConexion();
 
-           String idTutorial = request.getParameter("idTutorial");
-                // Verificar si el ID del tutorial ya existe en la base de datos
-                if (gestionar.existeTutorial(idTutorial)) {
-                    request.setAttribute("error", true);
+    if (conn != null) {
+        try {
+            String idTutorial = request.getParameter("idTutorial");
+            if (gestionar.existeTutorial(idTutorial)) {
+                    request.setAttribute("errorTuto", true);
                     // Redireccionar al formulario de agregar tutorial
                     request.getSession().setAttribute("userActionError", true);
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     return;
                 }
-                CallableStatement stmt = conn.prepareCall("{call agregarTutorial(?, ?, ?, ?, ?, ?)}");
-                
-                String nombre = request.getParameter("nombre");               
-                String prioridad = request.getParameter("prioridad");
-                String url = request.getParameter("url");
-                
-                // Validar la URL
-    try {
-        new URL(url).toURI();
-    } catch (MalformedURLException | URISyntaxException e) {
-        // La URL no es válida, puedes mostrar un mensaje de error o realizar alguna acción adecuada
-        e.printStackTrace();
-        response.getWriter().println("La URL ingresada no es válida.");
-        return;
-    }
-                String estado = request.getParameter("estado");           
-                String cat=request.getParameter("categori");
-                
-                stmt.setString(1, idTutorial);
-                stmt.setString(2, nombre);                
-                stmt.setString(3, prioridad);
-                stmt.setString(4, url);
-                stmt.setString(5, estado);
-                stmt.setString(6, cat);   
-                
-                System.out.println(idTutorial);
-                System.out.println(nombre);
-                System.out.println(prioridad);
-                System.out.println(url);
-                System.out.println(estado);
-                System.out.println(cat);
+            
+            // Obtener los parámetros del formulario de edición
+            String nombre = request.getParameter("nombre");
+            String url = request.getParameter("url");
+            String estado = request.getParameter("estado");
+            String prioridad = request.getParameter("prioridad");
 
-                stmt.execute();
-                conn.close();
+            // Obtener la categoría seleccionada del formulario
+            String nombreCat = request.getParameter("categoria");
 
-                response.sendRedirect("index.jsp");              
-                System.out.println("conexion exitosa Tutorial");
-            } catch (SQLException e)
-            {
-                e.printStackTrace(); 
-                response.getWriter().println("error");
-            }
-        } else 
-        {
-            response.getWriter().println("No se pudo establecer una conexión a la base de datos.");
+            CallableStatement stmt = conn.prepareCall("{call agregarTutorial(?, ?, ?, ?, ?, ?)}");
+            stmt.setString(1, idTutorial);
+            stmt.setString(2, nombre);
+            stmt.setString(3, prioridad);
+            stmt.setString(4, url);
+            stmt.setString(5, estado);
+            stmt.setString(6, nombreCat); // Agregar la categoría al tutorial
+
+            // Ejecutar la consulta para agregar el tutorial
+            stmt.execute();
+            conn.close();
+
+            response.sendRedirect("index.jsp");
+            System.out.println("Conexion exitosa Tutorial");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.getWriter().println("Error al agregar tutorial: " + e.getMessage());
         }
-        
+    } else {
+        response.getWriter().println("No se pudo establecer una conexión a la base de datos.");
     }
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+}
+
 
 }

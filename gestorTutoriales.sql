@@ -60,5 +60,3 @@ BEGIN
 END //
 /*restaura al ";"   */
 DELIMITER ;
-
-
