@@ -18,8 +18,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index1.jsp">Inicio</a>
-                <a class="nav-link active btn warning custom-button" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutoriales</a>
-                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+                <a class="nav-link active btn warning custom-button" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutorial</a>
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categoria</a>
 
             </div>
         </div>
@@ -169,9 +169,10 @@
                                 <i class="fa fa-eye text-white"></i>
                             </a>
                             <!-- Botón para editar tutorial -->
-                            <button class="btn btn-warning btn-sm" onclick="editarTutorial(<%= miTutorial.getIdTutorial()%>)">
-                                <i class="fa fa-pencil-alt text-white"></i>
-                            </button>
+                                <button class="btn btn-warning btn-sm" onclick="obtenerDatosParaEdicion(<%= miTutorial.getIdTutorial()%>, '<%= miTutorial.getNombre()%>', '<%= miTutorial.getPrioridad()%>', '<%= miTutorial.getUrl()%>', '<%= miTutorial.getEstado()%>', '<%= miTutorial.getCategori()%>')">
+    <i class="fa fa-pencil-alt text-white"></i>
+</button>
+
                             <!-- Botón para eliminar tutorial -->
                             <form action="svEliminarTutorial" method="post" style="display: inline;">
                                 <input type="hidden" name="idTutorial" value="<%= miTutorial.getIdTutorial()%>">
@@ -205,6 +206,7 @@
 
 
 <!-- Modal de edición de tutorial -->
+<!-- Modal de edición de tutorial -->
 <div class="modal fade" id="editarTutorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -213,11 +215,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="svEditarTutorial" method="POST" id="formEditarTutorial">
+                <form action="svEditarTutorial" method="POST" id="formEditarTutorial" enctype="multipart/form-data">
                     <!-- Campo oculto para almacenar el ID del tutorial -->
                     <input type="hidden" name="idTutorialEdit" id="idTutorialEdit">
                     <!-- Campo de edición para el nombre -->
                     <div class="mb-3">
+                        
                         <label for="nombreEdit" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombreEdit" name="nombre" placeholder="Nombre del tutorial" required>
                     </div>
@@ -276,7 +279,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Script para manejar la apertura del modal y enviar el ID del tutorial -->
 <script>
@@ -355,6 +357,28 @@
         setTimeout(function () {
             $('#errorAlerta').alert('close');
         }, 4000);
+</script>
+<script>
+    function obtenerDatosParaEdicion(idTutorial, nombre, prioridad, url, estado, categoria) {
+        // Pasa los datos del tutorial a la función editarTutorial()
+        editarTutorial(idTutorial, nombre, prioridad, url, estado, categoria);
+    }
+
+    function editarTutorial(idTutorial, nombre, prioridad, url, estado, categoria) {
+        // Establece los valores de los campos de la ventana modal con los datos del tutorial
+        document.getElementById("idTutorialEdit").value = idTutorial;
+        document.getElementById("nombreEdit").value = nombre;
+        document.getElementById("prioridadEdit").value = prioridad;
+        document.getElementById("urlEdit").value = url;
+        document.getElementById("estadoEdit").value = estado;
+        document.getElementById("categoriaEdit").value = categoria;
+
+        // Muestra la ventana modal de edición
+        var editarTutorialModal = new bootstrap.Modal(document.getElementById('editarTutorialModal'), {
+            keyboard: false
+        });
+        editarTutorialModal.show();
+    }
 </script>
 
 <!-- include para incluir un archivo dentro de otro, en este caso el footer qque tomara los scripts realizados en esa clase.  -->

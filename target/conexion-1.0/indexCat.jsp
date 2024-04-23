@@ -14,8 +14,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index1.jsp">Inicio</a>
-                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutoriales</a>
-                <a class="nav-link active btn warning custom-button" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutorial</a>
+                <a class="nav-link active btn warning custom-button" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categoria</a>
             </div>
         </div>
     </div>
@@ -95,10 +95,12 @@
                                                                     
                         <!-- En la sección de la tabla en index.jsp -->
                         <td>
-                            <!-- Botón para editar cat -->
-                            <button class="btn btn-warning btn-sm" onclick="editarCategoria(<%= miCategoria.getIdCategoria() %>)">
-                                <i class="fa fa-pencil-alt text-white"></i>
-                            </button>
+                            <!-- Botón para editar cat -->                     
+    <button class="btn btn-warning btn-sm" onclick="editarCategoria(<%= miCategoria.getIdCategoria() %>, '<%= miCategoria.getNombreCat() %>')">
+    <i class="fa fa-pencil-alt text-white"></i>
+</button>
+
+
                             <!-- Botón para eliminar tutorial -->
                             <form action="svEliminarCategoria" method="post" style="display: inline;">
                                 <input type="hidden" name="idCategoria" value="<%= miCategoria.getIdCategoria() %>">
@@ -159,7 +161,6 @@
     </div>
 </div>
 
-
 <!-- Script para manejar la apertura del modal y enviar el ID del tutorial -->
 <!-- Script para manejar la apertura del modal y enviar el ID del tutorial -->
 <script>
@@ -200,5 +201,20 @@
             $('#errorAlert').alert('close');
         }, 4000);
 </script>
+<script>
+    function editarCategoria(idCategoria, nombreCat) {
+        // Establece el valor del ID de la categoría en el campo oculto del formulario de edición
+        document.getElementById("idCatEdit").value = idCategoria;
+        // Establece el valor del nombre de la categoría en el campo de entrada de la ventana modal
+        document.getElementById("nombreCatEdit").value = nombreCat;
+        
+        // Muestra la ventana modal de edición
+        var editarCatModal = new bootstrap.Modal(document.getElementById('editarCatModal'), {
+            keyboard: false
+        });
+        editarCatModal.show();
+    }
+</script>
+
 <!-- include para incluir un archivo dentro de otro, en este caso el footer qque tomara los scripts realizados en esa clase.  -->
 <%@include file= "templates/footer.jsp"%>

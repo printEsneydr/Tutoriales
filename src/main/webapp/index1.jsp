@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active btn warning custom-button" aria-current="page" href="index1.jsp">Inicio</a>
-                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutoriales</a>
-                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutorial</a>
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categori</a>
 
             </div>
         </div>
