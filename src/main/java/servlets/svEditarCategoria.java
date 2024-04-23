@@ -43,8 +43,8 @@ public class svEditarCategoria extends HttpServlet {
                 String sql = "UPDATE categoria SET nombreCat=? WHERE idCategoria=?";
 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, idCat);
-                pstmt.setString(2, nombreCat);
+                pstmt.setString(1, nombreCat); // Primero establece el nombre de la categoría
+                pstmt.setString(2, idCat); // Luego establece el ID de la categoría
 
                 // Ejecutar la consulta de actualización
                 pstmt.executeUpdate();
