@@ -10,19 +10,21 @@
 
 
 <nav class="navbar navbar-expand-lg" style="background-color: #f5f5f5;">
-        <div class="container-fluid">
-            <label class="navbar-brand" style="color: #black; background-color: E2E2E2; font-family:  times new roman; font-size: 40px " >Tutoriales</label>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutoriales</a>
-                    <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
-                </div>
+    <div class="container-fluid">
+        <label class="navbar-brand" style="color: #black; background-color: E2E2E2; font-family:  times new roman; font-size: 40px " >Tutoriales</label>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index1.jsp">Inicio</a>
+                <a class="nav-link active btn warning custom-button" style="font-family: times new roman; font-size: 20px" aria-current="page" href="index.jsp">Agregar tutoriales</a>
+                <a class="nav-link active" style="font-family: times new roman; font-size: 20px" aria-current="page" href="indexCat.jsp">Agregar categorias</a>
+
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
 
 
@@ -250,15 +252,20 @@
                         </select>
                     </div>
                     <!-- Campo de edición para la categoría -->
-                    <div class="mb-3">
-                        <label for="categoriaEdit" class="form-label">Categoría</label>
-                        <select class="form-select" id="categoriaEdit" name="categoria" required>
-                            <option value="Logica de programacion">Lógica de programación</option>
-                            <option value="Flutter">Flutter</option>
-                            <option value="node.js">Node.js</option>
-                            <!-- Agrega más opciones según sea necesario -->
-                        </select>
-                    </div>
+                    <!-- Campo de edición para la categoría -->
+<div class="mb-3">
+    <label for="categoriaEdit" class="form-label">Categoría</label>
+    <select class="form-select" id="categoriaEdit" name="categoria" required>
+        <%
+        for (Categoria categoria : categorias) {
+        %>
+        <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat() %></option>
+        <% 
+        }
+        %>
+    </select>
+</div>
+
                     <!-- Botón para enviar el formulario de edición -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>

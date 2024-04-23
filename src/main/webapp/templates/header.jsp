@@ -165,3 +165,13 @@
             </div>
         </div>
     
+<style>
+    /* Estilo para el botón con la barra baja */
+    .custom-button {
+        border: 2px solid red; /* Cambia el color del borde según tu preferencia */
+        padding: 10px 20px; /* Ajusta el relleno según lo necesites */
+        border-radius: 5px; /* Agrega esquinas redondeadas */
+        font-family: times new roman; /* Utiliza la fuente que prefieras */
+        font-size: 20px; /* Tamaño de fuente */
+    }
+</style>
